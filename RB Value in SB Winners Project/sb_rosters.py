@@ -1,5 +1,5 @@
 import pandas as pd
-import cloudscraper
+import requests
 from bs4 import BeautifulSoup
 import time
 import os
@@ -89,11 +89,6 @@ TEAM_ABBR = {
 
 BASE_URL = "https://www.pro-football-reference.com/teams/{abbr}/{year}_roster.htm"
 
-# -----------------------------
-# Create Cloudscraper instance
-# -----------------------------
-scraper = cloudscraper.create_scraper()
-
 all_rosters = []
 
 for _, row in df.iterrows():
@@ -112,8 +107,7 @@ for _, row in df.iterrows():
     print(f"> Fetching {url}")
 
     try:
-        r = scraper.get(url)
-
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
         if r.status_code != 200:
             print(f"❌ Failed ({r.status_code})")
             continue
@@ -148,5 +142,4 @@ for _, row in df.iterrows():
 # -----------------------------
 output = pd.DataFrame(all_rosters)
 output.to_csv("sb_winner_rosters.csv", index=False)
-print(r.text[:500])
 print("✅ Done! Saved to sb_winner_rosters.csv")
