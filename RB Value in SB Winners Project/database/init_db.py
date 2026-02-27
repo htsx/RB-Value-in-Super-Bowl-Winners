@@ -2,7 +2,7 @@
 import sqlite3
 import os
 
-DB_FILE = "sb_teams.db"
+DB_FILE = "database/sb_teams.db"
 
 # Delete existing database file if it exists
 if os.path.exists(DB_FILE):

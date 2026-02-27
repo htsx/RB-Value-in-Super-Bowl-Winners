@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import sqlite3
 
 # Database setup
-conn = sqlite3.connect("sb_teams.db")  # creates the DB if it doesn't exist
+conn = sqlite3.connect("database/sb_teams.db")  # creates the DB if it doesn't exist
 cursor = conn.cursor()
 
 # Create table for SB winners
