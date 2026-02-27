@@ -21,6 +21,10 @@ CREATE TABLE IF NOT EXISTS sb_winners (
 """)
 conn.commit()
 
+# Clear table every time script runs
+cursor.execute("DELETE FROM sb_winners;")
+conn.commit()
+
 # Scrape ESPN Super Bowl winners
 url = "https://www.espn.com/nfl/superbowl/history/winners"
 headers = {"User-Agent": "Mozilla/5.0"}
@@ -41,6 +45,7 @@ for row in rows[1:]:  # skip table header
         try:
             parts = result.split(",")
             winner_part, loser_part = parts[0].strip(), parts[1].strip()
+            loser_part = parts[1].strip()
             winner_team, winner_score = winner_part.rsplit(" ", 1)
             loser_team, loser_score = loser_part.rsplit(" ", 1)
             winner_score = int(winner_score)
@@ -57,4 +62,4 @@ for row in rows[1:]:  # skip table header
 
 conn.commit()
 conn.close()
-print("Super Bowl winners inserted into sb_winners.db!")
+print("Super Bowl winners inserted into sb_teams.db!")
