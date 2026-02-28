@@ -1,125 +1,89 @@
-import pandas as pd
+# sb_rosters_to_sqlite.py
+import os
 import requests
 from bs4 import BeautifulSoup
-import time
-import re
-import os
+import sqlite3
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                  "AppleWebKit/537.36 (KHTML, like Gecko) "
-                  "Chrome/118.0.5993.90 Safari/537.36"
-}
+# Ensure database folder exists
+os.makedirs("database", exist_ok=True)
 
-def get_season_year(date_string):
-    """Extract NFL season year from Super Bowl date."""
-    year = int(re.search(r"\d{4}", date_string).group())
-    return year - 1  # Super Bowl played the next calendar year
+# Absolute path to avoid issues
+db_path = os.path.join("database", "sb_teams.db")
 
-def build_wiki_url(season_year, team_name):
-    """Build Wikipedia season URL from year and team name."""
-    mapping = {
-        "Green Bay": "Green Bay Packers",
-        "New England": "New England Patriots",
-        "San Francisco": "San Francisco 49ers",
-        "Dallas": "Dallas Cowboys",
-        "Miami": "Miami Dolphins",
-        "Denver": "Denver Broncos",
-        "Washington": "Washington Commanders",
-        "Pittsburgh": "Pittsburgh Steelers",
-        "Kansas City": "Kansas City Chiefs",
-        "New York Giants": "New York Giants",
-        "New York Jets": "New York Jets",
-        "Los Angeles Rams": "Los Angeles Rams",
-        "St. Louis Rams": "St. Louis Rams",
-        "Baltimore": "Baltimore Ravens",
-        "Oakland": "Oakland Raiders",
-        "Los Angeles Raiders": "Oakland Raiders",
-        "Tampa Bay": "Tampa Bay Buccaneers",
-        "Philadelphia": "Philadelphia Eagles",
-        "Seattle": "Seattle Seahawks",
-        "Indianapolis": "Indianapolis Colts"
-    }
-    team_name = mapping.get(team_name, team_name)
-    team_slug = team_name.replace(" ", "_")
-    return f"https://en.wikipedia.org/wiki/{season_year}_{team_slug}_season"
+# Connect to SQLite
+conn = sqlite3.connect(db_path)
+cursor = conn.cursor()
 
-def scrape_table_roster(html_text):
-    """Try to extract roster from HTML tables."""
+# Drop old sb_rosters table if it exists
+cursor.execute("DROP TABLE IF EXISTS sb_rosters;")
+conn.commit()
+
+# Create sb_rosters table
+cursor.execute("""
+CREATE TABLE sb_rosters (
+    No INTEGER,
+    Team TEXT,
+    Player TEXT,
+    FOREIGN KEY (No) REFERENCES sb_winners(No)
+)
+""")
+conn.commit()
+
+# Scrape the roster page
+url = "http://www.allcompetitions.com/nfl_sbros.php"
+headers = {"User-Agent": "Mozilla/5.0"}
+response = requests.get(url, headers=headers)
+
+if response.status_code != 200:
+    print("Failed to fetch page, status code:", response.status_code)
+    exit()
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Find all roster cells
+roster_cells = soup.find_all("td", class_="roster")
+
+insert_count = 0
+
+for cell in roster_cells:
+    # Year and team
+    span = cell.find("span", class_="roswin")
+    if not span:
+        continue
+
+    year_team_text = span.get_text().strip()  # e.g., "2026 SEATTLE SEAHAWKS: "
+    if year_team_text.endswith(":"):
+        year_team_text = year_team_text[:-1]
+
+    parts = year_team_text.split(" ", 1)
+    if len(parts) < 2:
+        continue
+
     try:
-        tables = pd.read_html(html_text)
-        for table in tables:
-            if "Pos" in table.columns or "Position" in table.columns:
-                return table
+        year = int(parts[0])
     except ValueError:
-        pass
-    return None
+        continue
+    team = parts[1].strip()
 
-def scrape_list_roster(soup):
-    """Extract roster from bullet lists if no table exists."""
-    roster = []
-    # Find h2/h3 headers containing 'Roster'
-    headers = soup.find_all(['h2', 'h3'])
-    for header in headers:
-        if 'Roster' in header.text:
-            # The roster list is often in the next <ul>
-            ul = header.find_next('ul')
-            if ul:
-                for li in ul.find_all('li'):
-                    roster.append({'Player': li.text.strip()})
-                return pd.DataFrame(roster)
-    return None
+    # Convert year to Super Bowl number
+    sb_no = year - 1966
 
-def scrape_roster(url):
-    """Fetch roster from Wikipedia, table or list format."""
-    print(f"Fetching {url}")
-    try:
-        r = requests.get(url, headers=HEADERS)
-        r.raise_for_status()
-    except requests.HTTPError as e:
-        print(f"HTTP error fetching {url}: {e}")
-        return None
+    # Player names (all text in the cell, remove span)
+    player_text = cell.get_text().replace(span.get_text(), "").strip()
+    # Remove Head Coach portion
+    player_text = player_text.split("(Head Coach")[0].strip()
 
-    soup = BeautifulSoup(r.text, "html.parser")
-    df = scrape_table_roster(r.text)
-    if df is not None:
-        return df
+    # Split players by comma
+    players = [p.strip() for p in player_text.split(",") if p.strip()]
 
-    # fallback to list-based roster
-    df = scrape_list_roster(soup)
-    if df is not None:
-        return df
+    for player in players:
+        cursor.execute("""
+        INSERT INTO sb_rosters (No, Team, Player)
+        VALUES (?, ?, ?)
+        """, (sb_no, team, player))
+        insert_count += 1
 
-    print("No roster found")
-    return None
+conn.commit()
+conn.close()
 
-def scrape_sb_rosters(csv_path, output_path="data/sb_winner_rosters.csv"):
-    """Scrape all SB-winning rosters and save to CSV."""
-    sb_df = pd.read_csv(csv_path)
-    all_rosters = []
-
-    for _, row in sb_df.iterrows():
-        winner = row["Winner"].strip()
-        season_year = get_season_year(row["Date"])
-        url = build_wiki_url(season_year, winner)
-
-        roster = scrape_roster(url)
-        if roster is not None:
-            roster["SB_Season"] = season_year
-            roster["Team"] = winner
-            all_rosters.append(roster)
-        else:
-            print(f"Skipped {winner} {season_year}: roster not found")
-
-        time.sleep(1)  # polite delay
-
-    if all_rosters:
-        final = pd.concat(all_rosters, ignore_index=True)
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        final.to_csv(output_path, index=False)
-        print(f"Saved {output_path}")
-    else:
-        print("No rosters scraped.")
-
-# Run the scraper
-scrape_sb_rosters("data/sb_winners_cleaned.csv")
+print(f"Super Bowl winning rosters inserted successfully! Total players: {insert_count}")
