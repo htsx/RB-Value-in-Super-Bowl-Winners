@@ -13,5 +13,5 @@ Using Python3 and SQLlite.
 This analysis will show 3 groups of high paying running back teams:
 
 -Super bowl winners
--Made playoffs but lost
+-Made playoffs but lost (With playoff result)
 -Missed playoffs
