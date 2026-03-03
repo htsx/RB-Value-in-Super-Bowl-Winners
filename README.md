@@ -15,3 +15,5 @@ This analysis will show 3 groups of high paying running back teams:
 -Super bowl winners
 -Made playoffs but lost (With playoff result)
 -Missed playoffs
+
+data was manually collected from Spotrac.
