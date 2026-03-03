@@ -1,5 +1,7 @@
 This is a project designed to analysis the value of high paying running backs to a superbowl winning team.
 
+This analysis will show the top 5 cap hit & contract average for running backs in the league every year, along with their stats and how the team finished.
+
 Using Python3 and SQLlite.
 
 -The data goes from 2011 to 2025 to present, for a variety of reasons:
