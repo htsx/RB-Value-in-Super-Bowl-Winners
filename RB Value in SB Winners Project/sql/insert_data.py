@@ -8,9 +8,8 @@ cursor = conn.cursor()
 # Format: (player_name, team, year, cap_hit, contract_average, cap_percentage)
 # -----------------------------------------------
 players_data = [
-    ('Saquon Barkley', 'PHI', 2024, 12800000, 12800000, 7.2),
-    ('Derrick Henry', 'BAL', 2024, 11000000, 11000000, 6.1),
-    # Add more rows here as you collect data...
+    ('Saquon Barkley', 'PHI', 2025, 20600000, 20600000, 7.2),
+    
 ]
 
 cursor.executemany('''
