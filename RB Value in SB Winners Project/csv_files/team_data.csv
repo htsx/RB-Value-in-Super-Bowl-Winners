@@ -14,7 +14,7 @@ NO,2024,5,12,0,No,
 GB,2024,11,6,0,Yes,Wild Card
 ARI,2024,8,9,0,No,
 CAR,2024,5,12,0,No,
-SF,2023,12,5,0,Yes,Super Bowl
+SF,2023,12,5,0,Yes,Super Bowl Loss
 NO,2023,9,8,0,No,
 IND,2023,9,8,0,No,
 TEN,2023,6,11,0,No,
@@ -22,12 +22,12 @@ CLE,2023,11,6,0,Yes,Wild Card
 LV,2023,8,9,0,No,
 NYG,2023,6,11,0,No,
 DAL,2023,12,5,0,Yes,Wild Card
-SF,2022,13,4,0,Yes,Championship Game
+SF,2022,13,4,0,Yes,Conference Championship
 DAL,2022,12,5,0,Yes,Divisional
 NO,2022,7,10,0,No,
 MIN,2022,13,4,0,Yes,Wild Card
 TEN,2022,7,10,0,No,
-CIN,2022,12,4,0,Yes,Championship Game
+CIN,2022,12,4,0,Yes,Conference Championship
 NYG,2022,9,7,1,Yes,Divisional
 CAR,2021,5,12,0,No,
 DAL,2021,12,5,0,Yes,Wild Card
@@ -36,7 +36,7 @@ MIN,2021,8,9,0,No,
 TEN,2021,12,5,0,Yes,Divisional
 NYG,2021,4,13,0,No,
 DEN,2021,7,10,0,No,
-CIN,2021,10,7,0,Yes,Super Bowl
+CIN,2021,10,7,0,Yes,Super Bowl Loss
 CAR,2020,5,11,0,No,
 DAL,2020,6,10,0,No,
 NO,2020,12,4,0,Yes,Divisional
@@ -51,7 +51,7 @@ ARI,2019,5,10,1,No,
 ATL,2019,7,9,0,No,
 JAX,2019,6,10,0,No,
 HOU,2019,10,6,0,Yes,Divisional
-LAR,2018,13,3,0,Yes,Super Bowl
+LAR,2018,13,3,0,Yes,Super Bowl Loss
 ARI,2018,3,13,0,No,
 ATL,2018,7,9,0,No,
 BUF,2018,6,10,0,No,
@@ -78,13 +78,13 @@ KC,2015,11,5,0,Yes,Divisional
 HOU,2015,9,7,0,Yes,Wild Card
 BUF,2015,8,8,0,No,
 CHI,2015,6,10,0,No,
-CAR,2015,15,1,0,Yes,Super Bowl
+CAR,2015,15,1,0,Yes,Super Bowl Loss
 MIN,2014,7,9,0,No,
 KC,2014,9,7,0,No,
 PHI,2014,10,6,0,No,
 HOU,2014,9,7,0,No,
 CHI,2014,5,11,0,No,
-SEA,2014,12,4,0,Yes,Super Bowl
+SEA,2014,12,4,0,Yes,Super Bowl Loss
 MIN,2013,5,10,1,No,
 TEN,2013,7,9,0,No,
 PHI,2013,10,6,0,Yes,Wild Card
