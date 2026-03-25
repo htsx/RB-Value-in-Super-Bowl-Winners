@@ -1,0 +1,106 @@
+team,season,wins,losses,Tie,made_playoffs,playoff_result
+PHI,2025,11,6,,Yes,Wild Card
+SF,2025,12,5,,Yes,Divisional
+BAL,2025,8,9,,No,
+IND,2025,8,9,,No,
+NO,2025,6,11,,No,
+GB,2025,9,7,1,No,
+HOU,2025,12,5,,Yes,Divisional
+CHI,2025,11,6,,Yes,Divisional
+SF,2024,6,11,,No,
+IND,2024,8,9,,No,
+PHI,2024,14,3,,Yes,Champions
+NO,2024,5,12,,No,
+GB,2024,11,6,,Yes,Wild Card
+ARI,2024,8,9,,No,
+CAR,2024,5,12,,No,
+SF,2023,12,5,,Yes,Super Bowl
+NO,2023,9,8,,No,
+IND,2023,9,8,,No,
+TEN,2023,6,11,,No,
+CLE,2023,11,6,,Yes,Wild Card
+LV,2023,8,9,,No,
+NYG,2023,6,11,,No,
+DAL,2023,12,5,,Yes,Wild Card
+SF,2022,13,4,,Yes,Championship Game
+DAL,2022,12,5,,Yes,Divisional
+NO,2022,7,10,,No,
+MIN,2022,13,4,,Yes,Wild Card
+TEN,2022,7,10,,No,
+CIN,2022,12,4,,Yes,Championship Game
+NYG,2022,9,7,1,Yes,Divisional
+CAR,2021,5,12,,No,
+DAL,2021,12,5,,Yes,Wild Card
+NO,2021,9,8,,No,
+MIN,2021,8,9,,No,
+TEN,2021,12,5,,Yes,Divisional
+NYG,2021,4,13,,No,
+DEN,2021,7,10,,No,
+CIN,2021,10,7,,Yes,Super Bowl
+CAR,2020,5,11,,No,
+DAL,2020,6,10,,No,
+NO,2020,12,4,,Yes,Divisional
+HOU,2020,4,12,,No,
+MIN,2020,7,9,,No,
+NYG,2020,6,10,,No,
+ARI,2020,8,8,,No,
+DAL,2019,8,8,,No,
+LAR,2019,9,7,,No,
+NYJ,2019,7,9,,No,
+ARI,2019,5,10,1,No,
+ATL,2019,7,9,,No,
+JAX,2019,6,10,,No,
+HOU,2019,10,6,,Yes,Divisional
+LAR,2018,13,3,,Yes,Super Bowl
+ARI,2018,3,13,,No,
+ATL,2018,7,9,,No,
+BUF,2018,6,10,,No,
+NYG,2018,5,11,,No,
+DAL,2018,10,6,,Yes,Divisional
+HOU,2018,11,5,,Yes,Wild Card
+SF,2018,4,12,,No,
+PIT,2017,13,3,,Yes,Divisional
+ATL,2017,10,6,,Yes,Divisional
+BUF,2017,9,7,,Yes,Wild Card
+CAR,2017,11,5,,Yes,Wild Card
+TB,2017,5,11,,No,
+TEN,2017,9,7,,Yes,Wild Card
+HOU,2017,4,12,,No,
+MIN,2016,8,8,,No,
+KC,2016,12,4,,Yes,Divisional
+BUF,2016,7,9,,No,
+CAR,2016,6,10,,No,
+TB,2016,9,7,,No,
+DEN,2016,9,7,,No,
+MIN,2015,11,5,,Yes,Wild Card
+SEA,2015,10,6,,Yes,Wild Card
+KC,2015,11,5,,Yes,Divisional
+HOU,2015,9,7,,Yes,Wild Card
+BUF,2015,8,8,,No,
+CHI,2015,6,10,,No,
+CAR,2015,15,1,,Yes,Super Bowl
+MIN,2014,7,9,,No,
+KC,2014,9,7,,No,
+PHI,2014,10,6,,No,
+HOU,2014,9,7,,No,
+CHI,2014,5,11,,No,
+SEA,2014,12,4,,Yes,Super Bowl
+MIN,2013,5,10,1,No,
+TEN,2013,7,9,,No,
+PHI,2013,10,6,,Yes,Wild Card
+HOU,2013,2,14,,No,
+CHI,2013,8,8,,No,
+OAK,2013,4,12,,No,
+MIN,2012,10,6,,Yes,Wild Card
+TEN,2012,6,10,,No,
+PHI,2012,4,12,,No,
+HOU,2012,12,4,,Yes,Divisional
+CAR,2012,7,9,,No,
+OAK,2012,4,12,,No,
+STL,2012,7,8,1,No,
+MIN,2011,3,13,,No,
+TEN,2011,9,7,,No,
+CAR,2011,6,10,,No,
+STL,2011,2,14,,No,
+OAK,2011,8,8,,No,
+ATL,2011,10,6,,Yes,Wild Card
