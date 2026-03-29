@@ -30,4 +30,10 @@ This is a project designed to analysis the value of high paying running backs to
 
 # How to run
 
+# Interesting Things To Note
+- 63.81% missed playoffs
+- Many teams in this dataset did not make the playoffs with a higher cap hit
+- Since 2011, the 2024 Eagles are the only team in this dataset to have won the superbowl ( 0.95%).
+- Only 6 teams in this dataset since 2011 made the super bowl, with the 2024 Eagles being the only team to have won it.
+
 # Tools Used
