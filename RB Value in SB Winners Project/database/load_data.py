@@ -4,6 +4,7 @@ import sqlite3
 #Load CSV files
 rb_df = pd.read_csv('csv_files/rb_top_5.csv')
 team_df = pd.read_csv('csv_files/team_data.csv')
+sb_df = pd.read_csv('csv_files/sb_teams.csv')
 
 #Connect to SQLite database
 conn = sqlite3.connect('database/rb_analysis.db')
@@ -11,6 +12,7 @@ conn = sqlite3.connect('database/rb_analysis.db')
 #Load data into tables
 rb_df.to_sql('rb_top_5', conn, if_exists='replace', index=False)
 team_df.to_sql('team_data', conn, if_exists='replace', index=False)
+sb_df.to_sql('sb_winners_rb', conn, if_exists='replace', index=False)
 
 conn.commit()
 conn.close()
