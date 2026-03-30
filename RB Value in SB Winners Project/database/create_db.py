@@ -29,6 +29,17 @@ cursor.execute('''
     )
 ''')
 
+#Create sb_winners_rb table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS sb_winners_rb (
+        team TEXT NOT NULL,
+        season INTEGER NOT NULL,
+        rb_name TEXT NOT NULL,
+        cap_hit REAL,
+        cap_percentage REAL
+    )
+''')
+
 conn.commit()
 conn.close()
 
