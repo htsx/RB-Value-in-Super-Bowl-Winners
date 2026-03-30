@@ -28,10 +28,10 @@ print(df.to_string())
 print("\n=== PLAYOFF OUTCOME DISTRIBUTION ===")
 query2 = '''
     SELECT 
-        COALESCE(t.playoff_result, 'Missed Playoffs') as outcome,
+        playoff_result as outcome,
         COUNT(*) as count,
         ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM team_data), 2) as percentage
-    FROM team_data t
+    FROM team_data
     GROUP BY outcome
     ORDER BY count DESC
 '''
@@ -41,7 +41,7 @@ print(pd.read_sql(query2, conn).to_string())
 print("\n=== AVERAGE WINS BY PLAYOFF RESULT ===")
 query3 = '''
     SELECT 
-        COALESCE(playoff_result, 'Missed Playoffs') as outcome,
+        playoff_result as outcome,
         ROUND(AVG(wins), 1) as avg_wins,
         COUNT(*) as count
     FROM team_data
@@ -65,7 +65,7 @@ print(pd.read_sql(query4, conn).to_string())
 print("\n=== AVERAGE CAP HIT BY PLAYOFF RESULT ===")
 query5 = '''
     SELECT 
-        COALESCE(t.playoff_result, 'Missed Playoffs') as outcome,
+        t.playoff_result as outcome,
         ROUND(AVG(r.cap_hit), 2) as avg_cap_hit,
         ROUND(AVG(r.cap_percentage), 2) as avg_cap_percentage
     FROM rb_top_5 r
@@ -74,5 +74,32 @@ query5 = '''
     ORDER BY avg_cap_hit DESC
 '''
 print(pd.read_sql(query5, conn).to_string())
+
+#QUERY 6: Average RB cap hit on Super Bowl winning teams
+print("\n=== AVERAGE RB CAP HIT ON SUPER BOWL WINNING TEAMS ===")
+query6 = '''
+    SELECT 
+        ROUND(AVG(cap_hit), 2) as avg_cap_hit,
+        ROUND(AVG(cap_percentage), 2) as avg_cap_percentage
+    FROM sb_winners_rb
+'''
+print(pd.read_sql(query6, conn).to_string())
+
+#QUERY 7: SB winning teams RB cap % vs top paid RB teams cap %
+print("\n=== SB WINNING TEAMS RB CAP % VS TOP PAID RB TEAMS CAP % ===")
+query7 = '''
+    SELECT 
+        'Super Bowl Winners' as group_name,
+        ROUND(AVG(cap_hit), 2) as avg_cap_hit,
+        ROUND(AVG(cap_percentage), 2) as avg_cap_percentage
+    FROM sb_winners_rb
+    UNION ALL
+    SELECT 
+        'Top Paid RB Teams' as group_name,
+        ROUND(AVG(cap_hit), 2) as avg_cap_hit,
+        ROUND(AVG(cap_percentage), 2) as avg_cap_percentage
+    FROM rb_top_5
+'''
+print(pd.read_sql(query7, conn).to_string())
 
 conn.close()
