@@ -8,7 +8,7 @@ conn = sqlite3.connect('database/rb_analysis.db')
 # Set style
 sns.set_theme(style="darkgrid")
 
-# Chart 1: Playoff Outcome Distribution (Bar Chart)
+#Chart 1: Playoff Outcome Distribution (Bar Chart)
 query1 = '''
     SELECT 
         COALESCE(playoff_result, 'Missed Playoffs') as outcome,
@@ -33,7 +33,7 @@ plt.savefig('charts/chart1_outcome_distribution.png', dpi=150)
 plt.close()
 print("Chart 1 saved")
 
-# Chart 2: Average Wins by Playoff Result (Horizontal Bar)
+#Chart 2: Average Wins by Playoff Result (Horizontal Bar)
 query2 = '''
     SELECT 
         COALESCE(playoff_result, 'Missed Playoffs') as outcome,
@@ -55,7 +55,7 @@ plt.savefig('charts/chart2_avg_wins.png', dpi=150)
 plt.close()
 print("Chart 2 saved")
 
-# Chart 3: Cap Hit vs Wins (Scatter Plot)
+#Chart 3: Cap Hit vs Wins (Scatter Plot)
 query3 = '''
     SELECT 
         r.cap_hit,
@@ -88,7 +88,7 @@ plt.savefig('charts/chart3_caphit_vs_wins.png', dpi=150)
 plt.close()
 print("Chart 3 saved")
 
-# Chart 4: Pie Chart - Overall Outcome Breakdown
+#Chart 4: Pie Chart - Overall Outcome Breakdown
 plt.figure(figsize=(8, 8))
 colors_pie = ['#d9534f', '#f0ad4e', '#f7c04a', '#5bc0de', '#5b9bd5', '#27ae60']
 wedges, texts, autotexts = plt.pie(

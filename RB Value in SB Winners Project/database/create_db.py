@@ -1,6 +1,6 @@
 import sqlite3
 
-#Connect to database (creates it if it doesn't exist)
+#Connect to database and creates it if it doesn't exist
 conn = sqlite3.connect('database/rb_analysis.db')
 cursor = conn.cursor()
 

@@ -3,7 +3,7 @@ import sqlite3
 
 conn = sqlite3.connect('database/rb_analysis.db')
 
-#QUERY 1: Join both tables to see RB salary vs team outcome
+#Q 1: Join both tables to see RB salary vs team outcome
 print("=== RB SALARY VS TEAM OUTCOME ===")
 query1 = '''
     SELECT 
@@ -24,7 +24,7 @@ query1 = '''
 df = pd.read_sql(query1, conn)
 print(df.to_string())
 
-#QUERY 2: Playoff outcome distribution for top paid RB teams
+#Q 2: Playoff outcome distribution for top paid RB teams
 print("\n=== PLAYOFF OUTCOME DISTRIBUTION ===")
 query2 = '''
     SELECT 
@@ -37,7 +37,7 @@ query2 = '''
 '''
 print(pd.read_sql(query2, conn).to_string())
 
-#QUERY 3: Average wins by playoff result
+#Q 3: Average wins by playoff result
 print("\n=== AVERAGE WINS BY PLAYOFF RESULT ===")
 query3 = '''
     SELECT 
@@ -50,7 +50,7 @@ query3 = '''
 '''
 print(pd.read_sql(query3, conn).to_string())
 
-#QUERY 4: How often did top paid RB teams win the Super Bowl?
+#Q 4: How often did top paid RB teams win the Super Bowl?
 print("\n=== SUPER BOWL WINS BY TOP PAID RB TEAMS ===")
 query4 = '''
     SELECT 
@@ -61,7 +61,7 @@ query4 = '''
 '''
 print(pd.read_sql(query4, conn).to_string())
 
-#QUERY 5: Average cap hit by playoff result
+#Q 5: Average cap hit by playoff result
 print("\n=== AVERAGE CAP HIT BY PLAYOFF RESULT ===")
 query5 = '''
     SELECT 
@@ -75,7 +75,7 @@ query5 = '''
 '''
 print(pd.read_sql(query5, conn).to_string())
 
-#QUERY 6: Average RB cap hit on Super Bowl winning teams
+#Q 6: Average RB cap hit on Super Bowl winning teams
 print("\n=== AVERAGE RB CAP HIT ON SUPER BOWL WINNING TEAMS ===")
 query6 = '''
     SELECT 
@@ -85,7 +85,7 @@ query6 = '''
 '''
 print(pd.read_sql(query6, conn).to_string())
 
-#QUERY 7: SB winning teams RB cap % vs top paid RB teams cap %
+#Q 7: SB winning teams RB cap % vs top paid RB teams cap %
 print("\n=== SB WINNING TEAMS RB CAP % VS TOP PAID RB TEAMS CAP % ===")
 query7 = '''
     SELECT 
