@@ -8,9 +8,7 @@ conn = sqlite3.connect('database/rb_analysis.db')
 # Set style
 sns.set_theme(style="darkgrid")
 
-# -----------------------------------------------
-# CHART 1: Playoff Outcome Distribution (Bar Chart)
-# -----------------------------------------------
+# Chart 1: Playoff Outcome Distribution (Bar Chart)
 query1 = '''
     SELECT 
         COALESCE(playoff_result, 'Missed Playoffs') as outcome,
@@ -33,11 +31,9 @@ for bar, count in zip(bars, df1['count']):
 plt.tight_layout()
 plt.savefig('charts/chart1_outcome_distribution.png', dpi=150)
 plt.close()
-print("Chart 1 saved!")
+print("Chart 1 saved")
 
-# -----------------------------------------------
-# CHART 2: Average Wins by Playoff Result (Horizontal Bar)
-# -----------------------------------------------
+# Chart 2: Average Wins by Playoff Result (Horizontal Bar)
 query2 = '''
     SELECT 
         COALESCE(playoff_result, 'Missed Playoffs') as outcome,
@@ -57,11 +53,9 @@ for bar, val in zip(bars, df2['avg_wins']):
 plt.tight_layout()
 plt.savefig('charts/chart2_avg_wins.png', dpi=150)
 plt.close()
-print("Chart 2 saved!")
+print("Chart 2 saved")
 
-# -----------------------------------------------
-# CHART 3: Cap Hit vs Wins (Scatter Plot)
-# -----------------------------------------------
+# Chart 3: Cap Hit vs Wins (Scatter Plot)
 query3 = '''
     SELECT 
         r.cap_hit,
@@ -92,11 +86,9 @@ plt.legend(title='Outcome', bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.savefig('charts/chart3_caphit_vs_wins.png', dpi=150)
 plt.close()
-print("Chart 3 saved!")
+print("Chart 3 saved")
 
-# -----------------------------------------------
-# CHART 4: Pie Chart - Overall Outcome Breakdown
-# -----------------------------------------------
+# Chart 4: Pie Chart - Overall Outcome Breakdown
 plt.figure(figsize=(8, 8))
 colors_pie = ['#d9534f', '#f0ad4e', '#f7c04a', '#5bc0de', '#5b9bd5', '#27ae60']
 wedges, texts, autotexts = plt.pie(
@@ -110,11 +102,9 @@ plt.title('Outcome Breakdown for Teams with a Top-Paid RB (2011-2025)', fontsize
 plt.tight_layout()
 plt.savefig('charts/chart4_pie_outcomes.png', dpi=150)
 plt.close()
-print("Chart 4 saved!")
+print("Chart 4 saved")
 
-# -----------------------------------------------
-# CHART 5: Average Cap Percentage by Season (Line Chart)
-# -----------------------------------------------
+#Chart 5: Average Cap Percentage by Season (Line Chart)
 query5 = '''
     SELECT 
         r.season,
@@ -148,7 +138,24 @@ plt.xticks(df5['season'], rotation=45)
 plt.tight_layout()
 plt.savefig('charts/chart5_cap_pct_over_time.png', dpi=150)
 plt.close()
-print("Chart 5 saved!")
+print("Chart 5 saved")
+
+#Chart 6: Super Bowl Winners vs Top Paid RB Teams Cap Hit Comparison
+categories = ['Super Bowl Winners', 'Top Paid RB Teams']
+avg_cap_hits = [3256230.60, 6868709.22]
+colors = ['#27ae60', '#d9534f']
+
+plt.figure(figsize=(8, 6))
+bars = plt.bar(categories, avg_cap_hits, color=colors, width=0.4)
+plt.title('Average RB Cap Hit: Super Bowl Winners vs Top Paid RB Teams (2011-2025)', fontsize=13, fontweight='bold')
+plt.ylabel('Average Cap Hit ($)')
+plt.ylim(0, 9000000)
+for bar, val in zip(bars, avg_cap_hits):
+    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 100000, '${:,.0f}'.format(val), ha='center', fontsize=11, fontweight='bold')
+plt.tight_layout()
+plt.savefig('charts/chart6_sb_vs_toppaid.png', dpi=150)
+plt.close()
+print("Chart 6 saved")
 
 conn.close()
 print("\nAll charts saved to charts/ folder!")
