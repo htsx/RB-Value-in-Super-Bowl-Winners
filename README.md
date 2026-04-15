@@ -17,7 +17,7 @@
 - Spotrac (https://www.spotrac.com/): the largest online sports database that provides detailed, up-to-date information on professional sports contracts, team payrolls, and salary caps
 - Pro Football Reference (https://www.pro-football-reference.com/): a comprehensive online database for American football statistics, covering NFL, AFL, and historical data.
  
-- All the data used in this project was manually collected.
+- All the data used in this project was manually collected and inputted into a spreadsheet.
 
 ## Why 2011-2025?
 The 2011 CBA introduced the current rookie wage scale and standardized NFL contract structures, making salary data consistent and comparable across all seasons. This makes 2011 the most logical starting point for this type of analysis. Spotrac's reliable historical salary data also begins around this period.
