@@ -1,8 +1,5 @@
 # Are High-Paid Running Backs Worth It? A NFL Cap Analysis (2011 - 2025)
 
-![SQLite](https://img.shields.io/badge/SQLite-Database-lightgrey?logo=sqlite)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-
 # Overview
 - This project answers a highly debated question within the NFL analytics community. 
 - In the modern NFL, salary cap management is the most important factor in a team's success, can make or break a NFL teams roster being contenders or failures. Since the cap space is obviously not unlimited, every single contract offered can take away the opportunity to upgrade needed positions. Since premium running backs can be offered gigantic contract offers that can eat up salary cap, it has created a debate if offering a running back a massive deal is worth it or could that money be spent elsewhere.
